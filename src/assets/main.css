@@ -1,12 +1,14 @@
 :root {
-  --bg-page: #FFF9FA;
-  --text-primary: #1A1A1A;
-  --text-muted: #6B6B6B;
-  --accent: #FFB7C5;
-  --accent-hover: #FF9EB1;
+  --bg-page: #F9F8FC;
+  --text-primary: #1E1E24;
+  --text-muted: #6B6B7B;
+  --accent: #D5C4F2;
+  --accent-hover: #BDA8E6;
+  --decor: #F8D2D9;
+  --decor-hover: #F0B8C2;
   --card-bg: #FFFFFF;
-  --border: #EAEAEA;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --border: #EAE5F2;
+  --shadow: 0 4px 20px rgba(190, 168, 230, 0.10);
   --radius: 14px;
   
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

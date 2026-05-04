@@ -1,38 +1,57 @@
-<script setup lang="ts">
-import { computed, ref } from 'vue'
+<script lang="ts"
+        setup>
+import {computed, ref} from 'vue'
 import ComplimentCard from './components/ComplimentCard.vue'
 import FavoritesPanel from './components/FavoritesPanel.vue'
-import { useCompliments } from './composables/useCompliments'
-import { useFavorites } from './composables/useFavorites'
+import WelcomeScreen from './components/WelcomeScreen.vue'
+import {useCompliments} from './composables/useCompliments'
+import {useFavorites} from './composables/useFavorites'
 
-const { current, next } = useCompliments()
-const { favorites } = useFavorites()
+const {current, next} = useCompliments()
+const {favorites} = useFavorites()
 
+const started = ref(false)
 const showFavorites = ref(false)
 const favCount = computed(() => favorites.value.length)
 </script>
 
 <template>
-  <div class="page">
+  <WelcomeScreen v-if="!started"
+                 @start="started = true" />
+
+  <div v-else
+       class="page">
     <header class="header">
-      <h1>Капля тепла</h1>
+      <h1>©Специально для Лисенка</h1>
       <button
-        class="fav-trigger"
-        :aria-label="`Открыть избранное (${favCount})`"
-        @click="showFavorites = true"
-      >
-        <span class="fav-icon" aria-hidden="true">♥</span>
-        <span class="fav-count" v-if="favCount > 0">{{ favCount }}</span>
+          :aria-label="`Открыть избранное (${favCount})`"
+          class="fav-trigger"
+          @click="showFavorites = true">
+        <span aria-hidden="true"
+              class="fav-icon">
+          <svg class="lucide lucide-heart-icon lucide-heart"
+               fill="none"
+               height="24"
+               stroke="currentColor"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-width="2"
+               viewBox="0 0 24 24"
+               width="24"
+               xmlns="http://www.w3.org/2000/svg"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></span>
+        <span v-if="favCount > 0"
+              class="fav-count">{{ favCount }}</span>
       </button>
     </header>
 
     <main class="main">
       <ComplimentCard :text="current" />
-
-      <button class="next-btn" @click="next">Следующий комплимент</button>
+      <button class="next-btn"
+              @click="next">Следующий комплимент
+      </button>
     </main>
-
-    <FavoritesPanel :open="showFavorites" @close="showFavorites = false" />
+    <FavoritesPanel :open="showFavorites"
+                    @close="showFavorites = false" />
   </div>
 </template>
 
@@ -63,13 +82,12 @@ h1 {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.2rem;
   padding: 0.5rem 0.9rem;
   border-radius: var(--radius);
   background: var(--card-bg);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  font-size: 0.95rem;
   transition: transform 140ms ease, background-color 160ms ease;
 }
 
@@ -82,8 +100,10 @@ h1 {
 }
 
 .fav-icon {
-  color: var(--accent-hover);
+  color: var(--decor-hover);
   font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .fav-count {

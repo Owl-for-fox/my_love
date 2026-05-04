@@ -1,10 +1,11 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useFavorites } from '../composables/useFavorites'
+<script lang="ts"
+        setup>
+import {computed} from 'vue'
+import {useFavorites} from '../composables/useFavorites'
 
 const props = defineProps<{ text: string }>()
 
-const { toggle, favorites } = useFavorites()
+const {toggle, favorites} = useFavorites()
 const liked = computed(() => favorites.value.includes(props.text))
 
 function onToggle() {
@@ -16,31 +17,31 @@ function onToggle() {
 <template>
   <div class="card">
     <button
-      class="heart"
-      :class="{ active: liked }"
-      :aria-label="liked ? 'Убрать из избранного' : 'Добавить в избранное'"
-      :aria-pressed="liked"
-      @click="onToggle"
+        :aria-label="liked ? 'Убрать из избранного' : 'Добавить в избранное'"
+        :aria-pressed="liked"
+        :class="{ active: liked }"
+        class="heart"
+        @click="onToggle"
     >
-      <svg
-        viewBox="0 0 24 24"
-        width="24"
-        height="24"
-        aria-hidden="true"
-        :fill="liked ? 'currentColor' : 'none'"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path
-          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-        />
+      <svg :fill="liked ? 'currentColor' : 'none'"
+           class="lucide lucide-heart-icon lucide-heart"
+           height="30"
+           stroke="currentColor"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           stroke-width="2"
+           viewBox="0 0 24 24"
+           width="30"
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
       </svg>
     </button>
 
-    <Transition name="fade-up" mode="out-in">
-      <p :key="text" class="text">{{ text }}</p>
+    <Transition mode="out-in"
+                name="fade-up">
+      <p :key="text"
+         class="text">{{ text }}
+      </p>
     </Transition>
   </div>
 </template>
@@ -83,12 +84,12 @@ function onToggle() {
 }
 
 .heart:hover {
-  background: rgba(255, 183, 197, 0.15);
-  color: var(--accent-hover);
+  background: rgba(248, 210, 217, 0.25);
+  color: var(--decor-hover);
 }
 
 .heart.active {
-  color: var(--accent-hover);
+  color: var(--decor-hover);
 }
 
 .heart:active {

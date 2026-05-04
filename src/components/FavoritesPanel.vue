@@ -1,17 +1,18 @@
-<script setup lang="ts">
-import { watch } from 'vue'
-import { useFavorites } from '../composables/useFavorites'
+<script lang="ts"
+        setup>
+import {watch} from 'vue'
+import {useFavorites} from '../composables/useFavorites'
 
 const props = defineProps<{ open: boolean }>()
 const emit = defineEmits<{ (e: 'close'): void }>()
 
-const { favorites, remove } = useFavorites()
+const {favorites, remove} = useFavorites()
 
 watch(
-  () => props.open,
-  (open) => {
-    document.body.style.overflow = open ? 'hidden' : ''
-  },
+    () => props.open,
+    (open) => {
+      document.body.style.overflow = open ? 'hidden' : ''
+    },
 )
 
 function onKeydown(e: KeyboardEvent) {
@@ -22,37 +23,83 @@ function onKeydown(e: KeyboardEvent) {
 <template>
   <Transition name="slide-up">
     <div
-      v-if="open"
-      class="overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Избранные комплименты"
-      tabindex="-1"
-      @click.self="emit('close')"
-      @keydown="onKeydown"
+        v-if="open"
+        aria-label="Избранные комплименты"
+        aria-modal="true"
+        class="overlay"
+        role="dialog"
+        tabindex="-1"
+        @keydown="onKeydown"
+        @click.self="emit('close')"
     >
       <div class="panel">
-        <div class="handle" aria-hidden="true"></div>
+        <div aria-hidden="true"
+             class="handle"></div>
 
         <header class="head">
           <h2>Избранное</h2>
-          <button class="close" aria-label="Закрыть" @click="emit('close')">×</button>
+          <button aria-label="Закрыть"
+                  class="close"
+                  @click="emit('close')">
+            <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
         </header>
 
-        <div class="list" :class="{ empty: favorites.length === 0 }">
-          <p v-if="favorites.length === 0" class="empty-text">
-            Здесь пока пусто. Нажми ♥ рядом с понравившимся комплиментом — и он появится тут.
+        <div :class="{ empty: favorites.length === 0 }"
+             class="list">
+          <p v-if="favorites.length === 0"
+             class="empty-text">
+            Здесь пока пусто. Нажми
+            <svg
+                fill="none"
+                height="12"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="12"
+                xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+            </svg>
+            рядом с понравившимся комплиментом — и он появится тут.
           </p>
 
           <ul v-else>
-            <li v-for="item in favorites" :key="item" class="item">
+            <li v-for="item in favorites"
+                :key="item"
+                class="item">
               <span class="item-text">{{ item }}</span>
               <button
-                class="remove"
-                aria-label="Удалить из избранного"
-                @click="remove(item)"
+                  aria-label="Удалить из избранного"
+                  class="remove"
+                  @click="remove(item)"
               >
-                ×
+                <svg
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
               </button>
             </li>
           </ul>
@@ -66,7 +113,7 @@ function onKeydown(e: KeyboardEvent) {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(26, 26, 26, 0.32);
+  background: rgba(30, 30, 36, 0.32);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -114,10 +161,13 @@ function onKeydown(e: KeyboardEvent) {
   line-height: 1;
   color: var(--text-muted);
   transition: background-color 160ms ease, color 160ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--border);
   color: var(--text-primary);
 }
 
@@ -165,6 +215,9 @@ ul {
 
 .remove {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -174,8 +227,8 @@ ul {
 }
 
 .remove:hover {
-  background: rgba(255, 183, 197, 0.25);
-  color: var(--accent-hover);
+  background: rgba(248, 210, 217, 0.35);
+  color: var(--decor-hover);
 }
 
 .slide-up-enter-active,
