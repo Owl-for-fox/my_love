@@ -24,7 +24,7 @@ defineEmits<{ start: [] }>()
 
       <h1 class="welcome-title">Привет, Лисёнок</h1>
       <p class="welcome-subtitle">
-        Этот сайт создан специально для тебя
+        Этот сайт создан специально для тебя чтобы точно никогда не забывала какая ты)
       </p>
 
       <button class="welcome-btn"
