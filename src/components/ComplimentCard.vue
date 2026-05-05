@@ -98,17 +98,17 @@ function onToggle() {
 
 .fade-up-enter-active,
 .fade-up-leave-active {
-  transition: opacity 280ms ease, transform 280ms ease;
+  transition: opacity 320ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-up-enter-from {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(10px) scale(0.98);
 }
 
 .fade-up-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-10px) scale(0.98);
 }
 
 @media (min-width: 640px) {

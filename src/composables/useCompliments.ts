@@ -19,7 +19,6 @@ export function useCompliments() {
   function next(): void {
     if (queue.length === 0) {
       let reshuffled = shuffle(compliments)
-      // Avoid immediate repeat at the seam
       if (reshuffled[0] === last && reshuffled.length > 1) {
         ;[reshuffled[0], reshuffled[1]] = [reshuffled[1]!, reshuffled[0]!]
       }

@@ -1,18 +1,24 @@
 <script lang="ts"
         setup>
-import {computed, ref} from 'vue'
+import {computed, ref, watch} from 'vue'
 import ComplimentCard from './components/ComplimentCard.vue'
 import FavoritesPanel from './components/FavoritesPanel.vue'
 import WelcomeScreen from './components/WelcomeScreen.vue'
 import {useCompliments} from './composables/useCompliments'
 import {useFavorites} from './composables/useFavorites'
 
+const STARTED_KEY = 'lis:started'
+
 const {current, next} = useCompliments()
 const {favorites} = useFavorites()
 
-const started = ref(false)
+const started = ref<boolean>(localStorage.getItem(STARTED_KEY) === '1')
 const showFavorites = ref(false)
 const favCount = computed(() => favorites.value.length)
+
+watch(started, (v) => {
+  if (v) localStorage.setItem(STARTED_KEY, '1')
+})
 </script>
 
 <template>
@@ -22,7 +28,7 @@ const favCount = computed(() => favorites.value.length)
   <div v-else
        class="page">
     <header class="header">
-      <h1>©Специально для Лисенка</h1>
+      <h1>Специально для Лисенка</h1>
       <button
           :aria-label="`Открыть избранное (${favCount})`"
           class="fav-trigger"
@@ -47,7 +53,7 @@ const favCount = computed(() => favorites.value.length)
     <main class="main">
       <ComplimentCard :text="current" />
       <button class="next-btn"
-              @click="next">Следующий комплимент
+              @click="next">Дальше
       </button>
     </main>
     <FavoritesPanel :open="showFavorites"
