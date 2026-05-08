@@ -3,6 +3,7 @@
 import {computed, ref, watch} from 'vue'
 import ComplimentCard from './components/ComplimentCard.vue'
 import EventsCard from './components/EventsCard.vue'
+import TogetherCard from './components/TogetherCard.vue'
 import FavoritesPanel from './components/FavoritesPanel.vue'
 import WelcomeScreen from './components/WelcomeScreen.vue'
 import {useCompliments} from './composables/useCompliments'
@@ -53,6 +54,7 @@ watch(started, (v) => {
 
     <main class="main">
       <EventsCard />
+      <TogetherCard />
       <ComplimentCard :text="current" />
       <button class="next-btn"
               @click="next">Дальше
