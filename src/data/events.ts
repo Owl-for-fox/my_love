@@ -47,5 +47,5 @@ export const events: readonly DayEvent[] = [
   {date: '2026-06-17', text: 'Ты'},
   {date: '2026-06-18', text: 'Чудо'},
   {date: '2026-06-19', text: 'Ляжки такие вкусняшки...'},
-  {date: '2026-06-20', text: 'Ты'},
+  {date: '2026-06-20', text: 'Мяу'},
 ]
