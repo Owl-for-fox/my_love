@@ -50,4 +50,5 @@ export const events: readonly DayEvent[] = [
   {date: '2026-06-20', text: 'Мяу'},
   {date: '2026-06-21', text: 'И руки молят о тебе...'},
   {date: '2026-06-22', text: 'Ну я же был паинькой...'},
+  {date: '2026-06-23', text: 'Mon amour, mon amour. Tu sais qu’il n’y a que toi'},
 ]
