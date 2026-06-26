@@ -35,7 +35,7 @@ const milestoneLabel = computed(() => {
     case 'hundred':
       return `Круглая дата: ${days} ${pluralDays(days)}!`
     case 'month':
-      return 'Месячная годовщина!'
+      return 'Плюс месяц)'
     default:
       return null
   }
