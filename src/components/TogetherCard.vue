@@ -18,12 +18,13 @@ const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate())
 const diff = Math.round((todayMidnight.getTime() - startMidnight.getTime()) / 86400000)
 const days = Math.max(1, diff + 1)
 
-const milestone = computed<'year' | 'month' | 'hundred' | null>(() => {
+const milestone = computed<'year' | 'month' | 'hundred' | 'six' | null>(() => {
   if (days <= 0) return null
   const isYear = todayMidnight.getMonth() === startMidnight.getMonth()
       && todayMidnight.getDate() === startMidnight.getDate()
   if (isYear) return 'year'
   if (days % 10 === 0) return 'hundred'
+  if (days == 67) return 'six'
   if (todayMidnight.getDate() === startMidnight.getDate()) return 'month'
   return null
 })
@@ -36,6 +37,8 @@ const milestoneLabel = computed(() => {
       return `Круглая дата: ${days} ${pluralDays(days)}!`
     case 'month':
       return 'Плюс месяц)'
+    case 'six':
+      return 'Сикс севен'
     default:
       return null
   }
