@@ -126,4 +126,9 @@ export const events: readonly DayEvent[] = [
   {date: '2026-09-01', text: 'Доброе утро любимая, хорошего дня лись, проснусь напишу'},
   {date: '2026-09-02', text: 'Лись, прости что так вышло, весь день забит был'},
   {date: '2026-09-03', text: 'Лись, ты чудо..'},
+  {date: '2026-09-05', text: 'c`est la vie'},
+  {date: '2026-09-06', text: 'c`est la vie'},
+  {date: '2026-09-07', text: 'c`est la vie'},
+  {date: '2026-09-08', text: 'c`est la vie'},
+  {date: '2026-09-09', text: 'c`est la vie'},
 ]
