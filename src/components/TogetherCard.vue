@@ -64,8 +64,8 @@ const milestoneLabel = computed(() => {
     </div>
 
     <div class="together-count">
-      <span class="num">{{ days }}</span>
-      <span class="unit">{{ pluralDays(days) }}</span>
+      <span class="num">130</span>
+      <span class="unit">...</span>
     </div>
 
     <div v-if="milestoneLabel"

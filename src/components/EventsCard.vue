@@ -19,8 +19,8 @@ const todayEvents = computed(() => events.filter((e) => e.date === todayKey()))
 </script>
 
 <template>
-  <div v-if="todayEvents.length"
-       class="events-card">
+  <div
+      class="events-card">
     <div class="events-head">
       <svg
           fill="none"
@@ -45,9 +45,8 @@ const todayEvents = computed(() => events.filter((e) => e.date === todayKey()))
     </div>
 
     <ul class="events-list">
-      <li v-for="(ev, i) in todayEvents"
-          :key="i"
-          class="event-item">{{ ev.text }}
+      <li
+          class="event-item">Как то так....
       </li>
     </ul>
   </div>
